@@ -24,6 +24,7 @@ public extension UITableView {
             #if DEBUG
             fatalError("\(#function) -- Not found \(String(describing: name)), make sure the cells are registered in the table view.")
             #endif
+            
             return .init()
         }
         
@@ -41,6 +42,7 @@ public extension UITableView {
             #if DEBUG
             fatalError("\(#function) -- Not found \(String(describing: name)), make sure the cells are registered in the table view.")
             #endif
+            
             return .init()
         }
         
