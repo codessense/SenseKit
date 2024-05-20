@@ -69,3 +69,4 @@ public extension UICollectionView {
         self.scrollToItem(at: indexPath, at: scrollPosition, animated: true)
     }
 }
+#endif
