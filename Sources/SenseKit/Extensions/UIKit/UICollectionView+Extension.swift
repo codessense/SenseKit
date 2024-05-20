@@ -2,7 +2,7 @@
 //  Copyright © 2024 Yujin Kim. All rights reserved.
 //
 
-#if canImaport(UIKit)
+#if canImport(UIKit)
 import UIKit
 
 public extension UICollectionView {
@@ -10,7 +10,7 @@ public extension UICollectionView {
         case header
         case footer
         
-        var description: String {
+        public var description: String {
             switch self {
             case .header: 
                 return UICollectionView.elementKindSectionHeader
@@ -27,7 +27,7 @@ public extension UICollectionView {
     }
     
     func register<V: UICollectionReusableView>(withClass name: V.Type, supplementaryViewOfKind kind: SupplementaryViewOfKind) {
-        self.register(V.self, forSupplementaryViewOfKind: kind, withReuseIdentifier: String(describing: name))
+        self.register(V.self, forSupplementaryViewOfKind: kind.description, withReuseIdentifier: String(describing: name))
     }
     
     func dequeueReusableCell<C: UICollectionViewCell>(withClass name: C.Type, for indexPath: IndexPath) -> C {

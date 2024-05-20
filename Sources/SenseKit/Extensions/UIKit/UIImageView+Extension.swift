@@ -2,7 +2,7 @@
 //  Copyright © 2024 Yujin Kim. All rights reserved.
 //
 
-#if canImaport(UIKit)
+#if canImport(UIKit)
 import UIKit
 
 public extension UIImageView {
@@ -11,10 +11,11 @@ public extension UIImageView {
             guard let selfRef = self else { return }
             
             if let data = try? Data(contentsOf: imageURL) {
-                if let image = UIImage(data: data)
+                if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         selfRef.image = image
                     }
+                }
             }
         }
     }
@@ -23,12 +24,18 @@ public extension UIImageView {
         with imageURL: URL,
         contentMode: UIView.ContentMode = .scaleAspectFit,
         placeholder: UIImage? = nil,
-        completion: ((UIImage? -> Void)? = nil)
+        completion: ((UIImage?) -> Void)? = nil
     ) {
         self.image = placeholder
         self.contentMode = contentMode
         
-        URLSession.shared.dataTask(with: imageURL) { (response, error, data) in
+        URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+            if let error = error {
+                #if DEBUG
+                fatalError("\(#function) -- \(String(describing: error.localizedDescription))")
+                #endif
+            }
+            
             guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                   let data = data,
                   let image = UIImage(data: data) else {
