@@ -21,6 +21,8 @@ public final class PaddableLabel: UILabel {
         return contentSize
     }
     
+    // MARK: - Override methods
+    //
     public override func drawText(in rect: CGRect) {
         let edgeInsets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
         
