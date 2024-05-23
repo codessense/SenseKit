@@ -2,8 +2,9 @@
 //  Copyright © 2024 Yujin Kim. All rights reserved.
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) || canImport(SwiftUI)
 import UIKit
+import SwiftUI
 
 public final class ApplicationManager {
     static let shared = ApplicationManager()
