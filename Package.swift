@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "SenseKit",
+    platforms: [
+        .iOS(.v12)
+    ],
     products: [
         .library(name: "SenseKit", targets: ["SenseKit"]),
     ],
