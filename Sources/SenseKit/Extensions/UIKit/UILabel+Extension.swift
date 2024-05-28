@@ -29,6 +29,20 @@ public extension UILabel {
         }
     }
     
+    func setLineSpacing(to spacing: CGFloat) {
+        if let text = self.text {
+            let style = NSMutableParagraphStyle()
+            style.lineSpacing = spacing
+            
+            let nsRange = NSRange(location: 0, length: text.count)
+            
+            let attributedString = NSMutableAttributedString(string: text)
+            attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: nsRange)
+            
+            self.attributedText = attributedString
+        }
+    }
+    
     func setLineHeight(to height: CGFloat) {
         if let text = self.text {
             let style = NSMutableParagraphStyle()
