@@ -49,11 +49,11 @@ public extension UILabel {
             style.maximumLineHeight = height
             style.minimumLineHeight = height
             
-            let lineOffset = (height - self.font.lineHeight) / 4
+            let lineOffset = (height - self.font.lineHeight) / 2 + self.font.descender
             
             let attributes: [NSAttributedString.Key : Any] = [
-                NSAttributedString.Key.paragraphStyle: style,
-                NSAttributedString.Key.baselineOffset: lineOffset
+                .paragraphStyle: style,
+                .baselineOffset: lineOffset
             ]
             
             let attributeString = NSAttributedString(string: text, attributes: attributes)
