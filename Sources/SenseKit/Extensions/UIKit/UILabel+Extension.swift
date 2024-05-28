@@ -6,6 +6,18 @@
 import UIKit
 
 public extension UILabel {
+    func setColor(to color: UIColor?) {
+        if let text = self.text {
+            let nsRange = NSRange(location: 0, length: text.count)
+            let color = color as Any
+            
+            let attributedString = NSMutableAttributedString(string: text)
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: nsRange)
+            
+            self.attributedText = attributedString
+        }
+    }
+    
     func setFont(to font: UIFont) {
         if let text = self.text {
             let nsRange = NSRange(location: 0, length: text.count)
