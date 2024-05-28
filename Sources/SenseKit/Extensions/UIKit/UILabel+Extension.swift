@@ -6,6 +6,17 @@
 import UIKit
 
 public extension UILabel {
+    func setFont(to font: UIFont) {
+        if let text = self.text {
+            let nsRange = NSRange(location: 0, length: text.count)
+            
+            let attributedString = NSMutableAttributedString(string: text)
+            attributedString.addAttribute(NSAttributedString.Key.font, value: font, range: nsRange)
+            
+            self.attributedText = attributedString
+        }
+    }
+    
     func setLineHeight(to height: CGFloat) {
         if let text = self.text {
             let style = NSMutableParagraphStyle()
