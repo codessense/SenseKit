@@ -35,8 +35,6 @@ public extension UICollectionView {
             #if DEBUG
             fatalError("\(#function) -- Not found \(String(describing: name)), make sure the cells are registered in the collection view.")
             #endif
-            
-            return .init()
         }
         
         return cell
@@ -51,9 +49,9 @@ public extension UICollectionView {
             #if DEBUG
             fatalError("\(#function) -- Not found \(String(describing: name)), make sure the cells are registered in the collection view.")
             #endif
-
-            return .init()
         }
+        
+        return view
     }
     
     func scrollToItemSafety(
