@@ -2,7 +2,7 @@
 //  Copyright © 2024 Yujin Kim. All rights reserved.
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 public extension UICollectionView {
