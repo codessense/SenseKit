@@ -8,20 +8,22 @@ import UIKit
 open class BaseTableViewCell<M>: UITableViewCell {
     // MARK: Properties
     //
-    internal static var identifier: String {
+    internal static var reuseIdentifier: String {
         return String(describing: self)
     }
     
     internal var model: M? {
         didSet {
+            guard let reuseIdentifier = self.reuseIdentifier else { return }
+            
             guard let model = self.model else {
-                debugPrint("\(String(describing: self.reuseIdentifier)) -- Cell model is not available.")
+                debugPrint("\(reuseIdentifier) -- Cell model is not available.")
                 return
             }
             
             self.bind(model)
             
-            debugPrint("\(String(describing: self.reuseIdentifier)) -- Cell model is available.")
+            debugPrint("\(reuseIdentifier) -- Cell model is available.")
         }
     }
     
@@ -29,6 +31,9 @@ open class BaseTableViewCell<M>: UITableViewCell {
     //
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.setLayouts()
+        self.setConstraints()
     }
     
     @available(*, unavailable)
@@ -36,10 +41,10 @@ open class BaseTableViewCell<M>: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal func bind(_ model: M) {}
+    open func setLayouts() {}
     
-    internal func setLayouts() {}
+    open func setConstraints() {}
     
-    internal func setConstraints() {}
+    open func bind(_ model: M) {}
 }
 #endif
