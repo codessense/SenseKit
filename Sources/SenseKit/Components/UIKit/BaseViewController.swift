@@ -2,4 +2,22 @@
 //  Copyright © 2024 Yujin Kim. All rights reserved.
 //
 
-import Foundation
+#if canImport(UIKit) && !os(watchOS)
+import UIKit
+
+open class BaseViewController: UIViewController {
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setLayouts()
+        self.setConstraints()
+        self.setIfNeededs()
+    }
+    
+    open func setLayouts() {}
+    
+    open func setConstraints() {}
+    
+    open func setIfNeededs() {}
+}
+#endif
