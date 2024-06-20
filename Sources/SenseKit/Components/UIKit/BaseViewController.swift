@@ -19,5 +19,15 @@ open class BaseViewController: UIViewController {
     open func setConstraints() {}
     
     open func setIfNeededs() {}
+    
+    open func deinitializes() {}
+    
+    deinit {
+        self.deinitializes()
+        
+        #if DEBUG
+        debugPrint("\(self) is deinitialized.")
+        #endif
+    }
 }
 #endif
