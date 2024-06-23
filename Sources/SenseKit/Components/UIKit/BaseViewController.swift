@@ -5,7 +5,9 @@
 #if canImport(UIKit) && !os(watchOS)
 import UIKit
 
-open class BaseViewController: UIViewController {
+open class BaseViewController<M>: UIViewController {
+    open var viewModel: M?
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -14,6 +16,8 @@ open class BaseViewController: UIViewController {
         self.setIfNeededs()
     }
     
+    // MARK: Custom methods
+    //
     open func setLayouts() {}
     
     open func setConstraints() {}
@@ -21,6 +25,19 @@ open class BaseViewController: UIViewController {
     open func setIfNeededs() {}
     
     open func deinitializes() {}
+    
+    // MARK: Initializer
+    //
+    public init(viewModel: M? = nil) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     deinit {
         self.deinitializes()
